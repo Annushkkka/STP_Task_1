@@ -8,11 +8,16 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import lombok.Data;
 
+/*
+ * Books - класс-сущность
+ * */
 @Entity
 @Data
 @Table(name = "book")
 public class Book {
-
+    /*
+     * Переменные
+     * */
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
