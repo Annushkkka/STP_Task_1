@@ -1,0 +1,204 @@
+/* Тело на главной странице */
+body.first_page {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    text-align: center;
+    margin: 0;
+    background-image: url(biblioteka_0.jpg);
+    background-size: cover;
+}
+
+/* Тело на остальных страницах */
+body.other_page {
+    display: flex;
+    flex-direction: column; /* Размещаем элементы по вертикали */
+    justify-content: flex-start; /* Выравнивание по началу контейнера (сверху) */
+    align-items: center; /* Центрируем по горизонтали */
+    height: 100vh;
+    text-align: center;
+    margin: 0;
+    padding-top: 50px;
+    background-color: #E6E2DD;
+}
+
+/* Контейнер на главной странице */
+.container {
+    height: 400px; /* Высота контейнера */
+    width: 900px;
+    display: flex; /* Включаем Flexbox */
+    justify-content: center; /* Выравнивание элементов по горизонтали */
+    align-items: center; /* Выравнивание элементов по вертикали */
+    text-align: center; /* Выравнивание текста внутри каждого элемента */
+    /*background-color: #E6E2DD; /* Цвет фона */
+    background-color: rgba(230, 226, 221, 0.7); /* Полупрозрачный фон */
+    flex-direction: column; /* Располагаем элементы в колонку */
+    border-radius: 20px; /* Скругляем углы контейнера */
+    backdrop-filter: blur(10px); /* Размываем фон */
+    /* Отступы внутри контейнера */
+    padding-left: 80px; /* Отступ слева */
+    padding-right: 80px; /* Отступ справа */
+}
+
+/* Контейнер для элементов над таблицей */
+.container-table {
+    margin-top: 40px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Заголовк и текст */
+h1, p {
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+/* Центрирование заголовков */
+h3{
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+/* Текст над таблицами */
+.body_table {
+    top: 200px;
+    height: 120px;
+    width: 1500px;
+}
+
+/* Кнопки на главной странице */
+.btn-block {
+    display: inline-block;
+    margin: 10px;
+    width: 200px;
+    padding: 20px;
+    text-align: center;
+    background-color: #373A36;
+    color: white;
+    font-size: 18px;
+    text-decoration: none;
+    border-radius: 10px;  /* Сглаживание углов */
+    border: none;  /* Убираем обводку */
+    outline: none;  /* Убираем обводку при фокусе */
+}
+
+/* Кнопки на главной странице при наведении */
+.btn-block:hover {
+    color: white;
+    background-color: #D48166;
+}
+
+/* Таблица: добавление отступа сверху */
+.table {
+    margin-top: 30px;
+    width: 1500px;
+}
+
+/* Подсветка нечетных строк таблицы */
+.table tbody tr:nth-child(odd) {
+    background-color: #f2f2f2; /* Светлый фон для нечетных строк */
+}
+
+/* Кнопка Поиск */
+.btn-custom-search {
+    padding: 5px 15px;
+    background-color: #8CA273;
+    color: white;
+    border-radius: 5px;  /* Сглаживание углов */
+    border: none;  /* Убираем обводку */
+    outline: none;  /* Убираем обводку при фокусе */
+    padding: 5px 15px;
+}
+
+/* Очистить */
+.btn-custom-clear {
+    padding: 5px 15px;
+    background-color: #D48166; /* Красный */
+    color: white;
+    border-radius: 5px;  /* Сглаживание углов */
+    border: none;  /* Убираем обводку */
+    outline: none;  /* Убираем обводку при фокусе */
+    padding: 5px 15px;
+}
+
+/* Кнопка Поиск при наведении */
+.btn-custom-search:hover {
+    background-color: #373A36;
+    color: white;
+}
+
+/* Кнопка очистить при наведении */
+.btn-custom-clear:hover {
+    background-color: #373A36;
+    color: white;
+}
+
+/* Стили для кнопки назад */
+.back-button {
+    padding: 5px 15px;
+    font-size: 16px;
+    color: white;
+    background-color: #D48166;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    display: block;
+    margin-left: 0;
+}
+
+/* Стили для кнопки назад при наведении*/
+.back-button:hover {
+    background-color: #373A36; /* Темно-синий при наведении */
+}
+
+/* Стили для кнопки добавить */
+.edit-button {
+    padding: 5px 15px;
+    font-size: 16px;
+    color: white;
+    background-color: #8CA273;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    display: block;
+    margin-right: 0;
+}
+
+/* Стили для кнопки добавить при наведении*/
+.edit-button:hover {
+    background-color: #373A36; /* Темно-синий при наведении */
+}
+
+/* Убираем подчеркивание у ссылок внутри кнопок */
+.edit-button a {
+    text-decoration: none; /* Убираем подчеркивание */
+}
+
+/* Контейнер для кнопки */
+.back-button-container {
+    display: flex;
+    justify-content: space-between; /* Размещаем кнопки по краям контейнера */
+    width: 100%;                 /* Контейнер занимает всю ширину страницы */
+    max-width: 1500px;           /* Ширина контейнера ограничена 1500px */
+    margin-left: auto;           /* Контейнер выравнивается по правому краю */
+    margin-right: auto;          /* Центрируем контейнер по горизонтали */
+}
+
+.back-button:active {
+    box-shadow: 0 0 10px rgba(55, 58, 54, 0.6);
+}
+.btn-custom-search:active{
+    box-shadow: 0 0 10px rgba(55, 58, 54, 0.6);
+}
+.btn-custom-clear:active{
+    box-shadow: 0 0 10px rgba(55, 58, 54, 0.6);
+}
+
+.edit-button:active {
+    box-shadow: 0 0 10px rgba(55, 58, 54, 0.6);
+}
+
+

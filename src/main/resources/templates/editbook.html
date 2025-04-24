@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Редактировать мастера</title>
+    <header th:replace="book :: head"></header>
+</head>
+<body class="other_page">
+<div class="back-button-container">
+    <!-- Кнопка перехода -->
+    <button class="back-button" onclick="goback()">< Назад</button>
+</div>
+<h1>Редактировать мастера</h1>
+<div class="d-flex justify-content-center">
+    <div class="col-md-15">
+        <form th:action="@{/book/save}" th:obgect="${book}" method="post">
+            <table style="width: 120%;">
+                <tr>
+                    <td style="text-align: left;">ID книги</td>
+                    <td><input type="text" class="form-control me-2" style="width: 250px;" placeholder="Введите данные" th:field="*{book.id}" readonly="readonly"></td>
+                </tr>
+                <tr>
+                    <td style="text-align: left;">Название книги</td>
+                    <td><input type="text" class="form-control me-2" style="width: 250px;" placeholder="Введите данные" th:field="*{book.title}"></td>
+                </tr>
+                <tr>
+                    <td style="text-align: left;">Автор</td>
+                    <td><input type="text" class="form-control me-2" style="width: 250px;" placeholder="Введите данные" th:field="*{book.author}"></td>
+                </tr>
+                <tr>
+                    <td style="text-align: left;">Издательство</td>
+                    <td><input type="text" class="form-control me-2" style="width: 250px;" placeholder="Введите данные" th:field="*{book.publisher}"></td>
+                </tr>
+                <tr>
+                    <td style="text-align: left;">Дата выдачи книги студенту</td>
+                    <td><input type="text" class="form-control me-2" style="width: 250px;" placeholder="Введите данные" th:field="*{book.issuedate}"></td>
+                </tr>
+                <tr>
+                    <td style="text-align: left;">ФИО студента</td>
+                    <td><input type="text" class="form-control me-2" style="width: 250px;" placeholder="Введите данные" th:field="*{book.student}"></td>
+                </tr>
+                <tr>
+                    <td style="text-align: left;">Дата сдачи книги студентом в библиотеку</td>
+                    <td><input type="text" class="form-control me-2" style="width: 250px;" placeholder="Введите данные" th:field="*{book.returndate}"></td>
+                </tr>
+                <tr>
+                    <td colspan="2" style="text-align: center; padding-top: 20px;">
+                        <button type="submit" class="btn-custom-search";>Сохранить</button>
+                    </td>
+                </tr>
+            </table>
+        </form>
+    </div>
+</div>
+<!-- Bootstrap JS -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+jHvh+3Wjp3JdI6tkpU6pM6voW8FKB8w3/4" crossorigin="anonymous"></script>
+<script type="text/javascript">
+    function goback() {
+        window.location = "[[@{/book/}]]"
+    }
+</script>
+</body>
+</html>
