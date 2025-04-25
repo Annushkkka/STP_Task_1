@@ -19,19 +19,28 @@
         <!-- Заголовок -->
         <div class="row">
             <div class="col text-center">
-                <h3>Книги</h3>
+                <h3>Книги, выданные студентам</h3>
             </div>
         </div>
         <!-- Поиск и кнопка добавления -->
-        <div class="row justify-content-center" style="width: 1500px;">
+        <div class="d-flex justify-content-between align-items-center mb-4" style="width: 100%;">
             <!-- Блок поиска -->
-            <div class="col-12 text-center">
+            <div class="text-start">
                 <h6>Поиск книги по любому критерию:</h6>
-                <form th:action="@{/book/}" class="d-flex justify-content-center align-items-center">
-                    <input type="text" name="keyword" id="keyword-book" class="form-control me-2" style="width: 600px;" th:value="${keyword}" placeholder="Введите данные">
+                <form th:action="@{/book/}" class="d-flex align-items-center">
+                    <input type="text" name="keyword" id="keyword-book" class="form-control me-2" style="width: 500px;" th:value="${keyword}" placeholder="Введите данные">
                     <input type="submit" class="btn-custom-search me-2" value="Поиск">
                     <input type="button" class="btn-custom-clear" value="Очистить" id="btnClear-book" onclick="clearSearch()">
                 </form>
+            </div>
+            <!-- Блок сортировки -->
+            <div class="text-end">
+                <h6>Сортировка по дате выдачи:</h6>
+                <select id="issueDateSort" class="form-select" style="width: 300px;" onchange="sortByIssueDate()">
+                    <option value="">Без сортировки</option>
+                    <option value="asc">По возрастанию (сначала старые)</option>
+                    <option value="desc">По убыванию (сначала новые)</option>
+                </select>
             </div>
         </div>
     </div>
@@ -45,6 +54,7 @@
                 <th scope="col">Дата выдачи книги студенту</th>
                 <th scope="col">ФИО студента</th>
                 <th scope="col">Дата сдачи книги студентом в библиотеку</th>
+                <!-- Блок сортировки -->
             </tr>
             </thead>
             <tbody>
@@ -53,7 +63,7 @@
                 <th scope="row" class="text-black" th:text="${book.title}"></th>
                 <th scope="row" class="text-black" th:text="${book.author}"></th>
                 <th scope="row" class="text-black" th:text="${book.publisher}"></th>
-                <th scope="row" class="text-black" th:text="${book.issuedate}"></th>
+                <th scope="row" class="text-black issue-date" th:text="${book.issuedate}" th:data-date="${book.issuedate}"></th>
                 <th scope="row" class="text-black" th:text="${book.student}"></th>
                 <th scope="row" class="text-black" th:text="${book.returndate}"></th>
                 <td>
@@ -85,6 +95,37 @@
     // Функция для перехода на стартовую страницу
     function editbook() {
         window.location = "[[@{/book/new}]]"
+    }
+    // Функция сортировки по дате выдачи
+    function sortByIssueDate() {
+        const sortOrder = document.getElementById('issueDateSort').value;
+        if (!sortOrder) {
+            // Если выбрано "Без сортировки", перезагружаем страницу
+            window.location = "[[@{/book/}]]";
+            return;
+        }
+
+        const table = document.querySelector('table');
+        const tbody = table.querySelector('tbody');
+        const rows = Array.from(tbody.querySelectorAll('tr'));
+
+        rows.sort((a, b) => {
+            const dateA = new Date(a.querySelector('.issue-date').getAttribute('data-date'));
+            const dateB = new Date(b.querySelector('.issue-date').getAttribute('data-date'));
+
+            if (sortOrder === 'asc') {
+                return dateA - dateB;
+            } else {
+                return dateB - dateA;
+            }
+        });
+
+        // Очищаем таблицу и добавляем отсортированные строки
+        while (tbody.firstChild) {
+            tbody.removeChild(tbody.firstChild);
+        }
+
+        rows.forEach(row => tbody.appendChild(row));
     }
 </script>
 </body>
