@@ -4,7 +4,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import java.util.List;
 
-/*
+/**
  * Репозиторий для поиска книг по ключевому слову
  */
 public interface BookRepository extends JpaRepository<Book, Integer> {

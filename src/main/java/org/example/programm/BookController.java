@@ -10,19 +10,19 @@ import org.springframework.dao.DataIntegrityViolationException;
 
 import java.util.List;
 
-/*
+/**
  * Класс контроллер
  * version 1.0
  */
 @Controller
 public class BookController {
-    /*
+    /**
      * Импорт класса BooksService
      */
     @Autowired
     private BookService bookService;
 
-    /*
+    /**
      * Метод для приветственной страниц, сюда можно потом будет добавить переход на доп страницы
      * since 1.0
      * @param model класс, отвечающий за передачу данных в Spring MVC из контроллера в шаблон
@@ -38,7 +38,7 @@ public class BookController {
         }
     }
 
-    /*
+    /**
      * Метод главное страницы
      * since 1.0
      * @param model класс, отвечающий за передачу данных в Spring MVC из контроллера в шаблон
@@ -57,7 +57,7 @@ public class BookController {
         }
     }
 
-    /*
+    /**
      * Метод удаления книги
      * since 1.0
      * @param id возвращает ID для удаления книги
@@ -75,7 +75,7 @@ public class BookController {
         }
     }
 
-    /*
+    /**
      * Метод добавления книги
      * since 1.0
      * @param model Модель для формирования списка
@@ -92,7 +92,7 @@ public class BookController {
         }
     }
 
-    /*
+    /**
      * Метод сохранения книги
      * since 1.0
      * @param book содержит в себе данные для передачи в БД
@@ -108,7 +108,7 @@ public class BookController {
         }
     }
 
-    /*
+    /**
      * Метод редактирования книги
      * since 1.0
      * @param id возвращает ID для редактирования книги
