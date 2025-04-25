@@ -25,6 +25,7 @@ logs/
 .DS_Store
 Thumbs.db
 
+
 ### Дополнительные игнорируемые папки ###
 .codemap/
 gradle/
