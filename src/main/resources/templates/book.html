@@ -22,6 +22,18 @@
                 <h3>Книги, выданные студентам</h3>
             </div>
         </div>
+        <!-- Блок с подсчетом книг -->
+        <div class="row mb-4">
+            <div class="col text-center">
+                <h5>Общее количество: <span id="bookCount">0</span></h5>
+            </div>
+        </div>
+        <!-- Блок с гистограммой -->
+        <div class="row mb-4">
+            <div class="col">
+                <canvas id="issueDateHistogram" width="1200" height="300"></canvas>
+            </div>
+        </div>
         <!-- Поиск и кнопка добавления -->
         <div class="d-flex justify-content-between align-items-center mb-4" style="width: 100%;">
             <!-- Блок поиска -->
@@ -84,7 +96,9 @@
 <!-- Bootstrap JS -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+jHvh+3Wjp3JdI6tkpU6pM6voW8FKB8w3/4" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 <script type="text/javascript">
+    // Функция для очистки поиска
     function clearSearch() {
         window.location = "[[@{/book/}]]"
     }
@@ -100,7 +114,6 @@
     function sortByIssueDate() {
         const sortOrder = document.getElementById('issueDateSort').value;
         if (!sortOrder) {
-            // Если выбрано "Без сортировки", перезагружаем страницу
             window.location = "[[@{/book/}]]";
             return;
         }
@@ -127,6 +140,78 @@
 
         rows.forEach(row => tbody.appendChild(row));
     }
+
+    // Функция для подсчета количества книг
+    function updateBookCount() {
+        const rows = document.querySelectorAll('table tbody tr');
+        document.getElementById('bookCount').textContent = rows.length;
+    }
+
+    // Функция для построения гистограммы по датам выдачи книг
+    function generateIssueDateHistogram() {
+        const issueDates = document.querySelectorAll('.issue-date');
+        const dateCounts = {};
+
+        // Подсчитываем количество книг по каждой дате
+        issueDates.forEach(dateElement => {
+            const issueDate = dateElement.getAttribute('data-date');
+            dateCounts[issueDate] = (dateCounts[issueDate] || 0) + 1;
+        });
+
+        // Формируем массивы для графика
+        const labels = Object.keys(dateCounts);
+        const data = Object.values(dateCounts);
+
+        // Сортировка меток и данных по возрастанию дат
+        const sortedData = labels.map((label, index) => ({ label, count: data[index] }))
+            .sort((a, b) => new Date(a.label) - new Date(b.label));
+
+        const sortedLabels = sortedData.map(item => item.label);
+        const sortedCounts = sortedData.map(item => item.count);
+
+        // Получаем контекст для canvas
+        const ctx = document.getElementById('issueDateHistogram').getContext('2d');
+
+        // Строим гистограмму
+        new Chart(ctx, {
+            type: 'bar',
+            data: {
+                labels: sortedLabels,
+                datasets: [{
+                    label: 'Количество выдач по дням',
+                    data: sortedCounts,
+                    backgroundColor: '#D48166',
+                    hoverBackgroundColor: '#db7d5f', // Цвет при наведении
+                }]
+            },
+            options: {
+                responsive: true,
+                scales: {
+                    y: {
+                        beginAtZero: true,
+                        ticks: {
+                            stepSize: 1 // Шаг оси Y (например, 1 означает, что на оси Y будут интервалы по 1)
+                        }
+                    },
+                    x: {
+                        // Опционально форматируем ось X для удобства
+                        ticks: {
+                            autoSkip: true,
+                            maxRotation: 45,
+                            minRotation: 45
+                        }
+                    }
+                }
+            }
+        });
+    }
+
+    // Инициализация: обновление счетчика и гистограммы
+    window.onload = function() {
+        updateBookCount();
+        generateIssueDateHistogram();
+    };
+
 </script>
 </body>
 </html>
