@@ -64,7 +64,7 @@ public class BookController {
      * @return редирект на главную
      */
     @GetMapping("/book/delete/{id}")
-    public String deleteBook(@PathVariable Integer id) {
+    public String deleteBook(@PathVariable("id") Integer id) {
         try {
             bookService.deleteBook(id);
             return "redirect:/book/";
