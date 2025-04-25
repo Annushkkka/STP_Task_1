@@ -6,7 +6,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
-import org.springframework.dao.DataIntegrityViolationException;
 
 import java.util.List;
 
@@ -47,7 +46,7 @@ public class BookController {
      * @return возвращает шаблон
      */
     @GetMapping("/book/")
-    public String book(Model model, @Param("keyword") String keyword) {
+    public String book(Model model, @RequestParam(value = "keyword", required = false) String keyword) {
         try {
             List<Book> booklist = bookService.getAllBooks(keyword);
             model.addAttribute("bookList", booklist);
@@ -69,8 +68,6 @@ public class BookController {
         try {
             bookService.deleteBook(id);
             return "redirect:/book/";
-        } catch (DataIntegrityViolationException e) {
-            return "data_error";
         } catch (Exception e) {
             return "error";
         }
@@ -116,7 +113,7 @@ public class BookController {
      * @return возвращает список параметров книги для дальнейшего редактирования
      */
     @GetMapping("/book/edit/{id}")
-    public ModelAndView editBook(@PathVariable Integer id) {
+    public ModelAndView editBook(@PathVariable("id") Integer id) {
         try {
             ModelAndView mav = new ModelAndView("editbook");
             Book book = bookService.getBook(id);
