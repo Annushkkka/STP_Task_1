@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Редактировать мастера</title>
+    <title>Редактировать книги</title>
     <header th:replace="book :: head"></header>
 </head>
 <body class="other_page">
@@ -10,7 +10,7 @@
     <!-- Кнопка перехода -->
     <button class="back-button" onclick="goback()">< Назад</button>
 </div>
-<h1>Редактировать мастера</h1>
+<h1>Редактировать книгу</h1>
 <div class="d-flex justify-content-center">
     <div class="col-md-15">
         <form th:action="@{/book/save}" th:obgect="${book}" method="post">
