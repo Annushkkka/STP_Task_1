@@ -9,7 +9,7 @@ import jakarta.persistence.Id;
 import lombok.Data;
 
 /**
- * Books - класс-сущность
+ * Book - класс-сущность
  *
  * @version 1.0
  * */

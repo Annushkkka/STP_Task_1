@@ -12,7 +12,8 @@ import java.util.List;
 
 /**
  * Класс контроллер
- * version 1.0
+ *
+ * @version 1.0
  */
 @Controller
 public class BookController {
@@ -24,7 +25,7 @@ public class BookController {
 
     /**
      * Метод для приветственной страниц, сюда можно потом будет добавить переход на доп страницы
-     * since 1.0
+     * @since 1.0
      * @param model класс, отвечающий за передачу данных в Spring MVC из контроллера в шаблон
      * @return возвращает шаблон
      */
@@ -40,7 +41,7 @@ public class BookController {
 
     /**
      * Метод главное страницы
-     * since 1.0
+     * @since 1.0
      * @param model класс, отвечающий за передачу данных в Spring MVC из контроллера в шаблон
      * @param keyword ключевое слово для поиска
      * @return возвращает шаблон
@@ -59,7 +60,7 @@ public class BookController {
 
     /**
      * Метод удаления книги
-     * since 1.0
+     * @since 1.0
      * @param id возвращает ID для удаления книги
      * @return редирект на главную
      */
@@ -77,7 +78,7 @@ public class BookController {
 
     /**
      * Метод добавления книги
-     * since 1.0
+     * @since 1.0
      * @param model Модель для формирования списка
      * @return возвращает шаблон редактирования книги
      */
@@ -94,7 +95,7 @@ public class BookController {
 
     /**
      * Метод сохранения книги
-     * since 1.0
+     * @since 1.0
      * @param book содержит в себе данные для передачи в БД
      * @return редирект на главную
      */
@@ -110,7 +111,7 @@ public class BookController {
 
     /**
      * Метод редактирования книги
-     * since 1.0
+     * @since 1.0
      * @param id возвращает ID для редактирования книги
      * @return возвращает список параметров книги для дальнейшего редактирования
      */
